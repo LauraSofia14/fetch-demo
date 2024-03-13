@@ -3,6 +3,15 @@ import './App.css'
 import axiosInstance from './api';
 import Summary from './component/Sumary';
 import Carousel from './component/Carousel';
+
+
+/**
+ * 1. Fix Issues on Carrousel
+ * 2. every card on Carrousel must have image
+ * 3. the image must come from the api
+ * you can use UseEffect or UseState to solve the issues on the project
+ */
+
 function App() {
   const [pokeList, setPokeList] = useState([])
   const [selectedPoke, setSelectedPoke] = useState({})
@@ -10,7 +19,7 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false)
   useEffect(()=>{
     const fetchData = async ()=> {
-      const data = await axiosInstance.get('/pokemon?limit=4&offset=0');
+      const data = await axiosInstance.get('/pokemon?limit=6&offset=0');
       setPokeList(data.data.results)
     }
     fetchData()
@@ -31,12 +40,12 @@ function App() {
   }
   const onNextPage = async()=> {
     setPage(page + 1);
-    const data = await axiosInstance.get(`/pokemon?limit=4&offset=${page}`);
+    const data = await axiosInstance.get(`/pokemon?limit=6&offset=${page}`);
     setPokeList(data.data.results)
   }
   const onPrevPage = async()=> {
     setPage(page - 1);
-    const data = await axiosInstance.get(`/pokemon?limit=4&offset=${page}`);
+    const data = await axiosInstance.get(`/pokemon?limit=6&offset=${page}`);
     setPokeList(data.data.results)
   
   }
